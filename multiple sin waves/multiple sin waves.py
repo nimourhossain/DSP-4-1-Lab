@@ -1,25 +1,23 @@
-import matplotlib.pyplot as plt    # গ্রাফ আঁকতে matplotlib.pyplot ইমপোর্ট
-import numpy as np                 # নম্বর ও অ্যারে অপারেশনের জন্য NumPy ইমপোর্ট
+import matplotlib.pyplot as plt
+import numpy as np
 
-sr = 100                          # স্যাম্পলিং রেট = 100 Hz
+sr = 100
+ts = 1.0 / sr
+t = np.arange(0, 1, ts)
 
-ts = 1.0 / sr                     # স্যাম্পলিং ইন্টারভাল = 1/100 সেকেন্ড
-t = np.arange(0, 1, ts)           # 0 থেকে 1 সেকেন্ড পর্যন্ত টাইম ভেক্টর তৈরি
+freq = 1
+x = 8 * np.sin(2 * np.pi * freq * t)
 
-freq = 1                          # প্রথম সাইন সিগন্যালের ফ্রিকোয়েন্সি = 1 Hz
-x = 8 * np.sin(2 * np.pi * freq * t)   # অ্যাম্প্লিটিউড 8 সহ 1 Hz সাইন ওয়েভ তৈরি
+freq = 4
+x += np.sin(2 * np.pi * freq * t)
 
-freq = 4                          # দ্বিতীয় সাইন সিগন্যালের ফ্রিকোয়েন্সি = 4 Hz
-x += np.sin(2 * np.pi * freq * t)     # 4 Hz সিগন্যাল যোগ করা হলো (অ্যাম্প্লিটিউড 1)
+freq = 7
+x += 0.5 * np.sin(2 * np.pi * freq * t)
 
-freq = 7                          # তৃতীয় সাইন সিগন্যালের ফ্রিকোয়েন্সি = 7 Hz
-x += 0.5 * np.sin(2 * np.pi * freq * t)  # 7 Hz সিগন্যাল অ্যাম্প্লিটিউড 0.5 সহ যোগ করা
+freq = 20
+x += 0.3 * np.sin(2 * np.pi * freq * t)
 
-freq = 20                         # চতুর্থ সাইন সিগন্যালের ফ্রিকোয়েন্সি = 20 Hz
-x += 0.3 * np.sin(2 * np.pi * freq * t)  # 20 Hz সিগন্যাল অ্যাম্প্লিটিউড 0.3 সহ যোগ করা
-
-plt.figure(figsize=(8, 6))        # ফিগারের আকার নির্ধারণ করা হলো (8x6 ইঞ্চি)
-plt.plot(t, x, 'r')               # টাইম বনাম সিগন্যাল রেড লাইনে অঙ্কন
-plt.ylabel('Amplitude')           # Y-অক্ষে লেবেল 'Amplitude' সেট করা
-
-plt.show()                        # গ্রাফ প্রদর্শন করা
+plt.figure(figsize=(8, 6))
+plt.plot(t, x, 'r')
+plt.ylabel('Amplitude')
+plt.show()

@@ -1,32 +1,7 @@
-1. প্রশ্ন: x = [1,2,3] মানে কী?
-উত্তর: এটি টাইম-ডোমেইন ইনপুট সিগন্যাল x[n], n=0,1,2।
-
-2. প্রশ্ন: h = [0,0.5,1] কী নির্দেশ করছে?
-উত্তর: এটি ইনপাল্স রেসপন্স / ফিল্টার h[n], M=3।
-
-3. প্রশ্ন: conv = convolve(x,h,mode='full') কী করছে?
-উত্তর: এটি x[n] এবং h[n] এর **লিনিয়ার কনভোলিউশন** সম্পূর্ণ আউটপুট (L=N+M-1) সহ তৈরি করছে।  
-Math form: conv[n] = Σ_{k=0}^{M-1} x[n-k]*h[k] (time-reverse integrated in SciPy)
-
-4. প্রশ্ন: corr = correlate(x,h,mode='full') কী করছে?
-উত্তর: এটি x[n] এবং h[n] এর **ক্রস-কোরিলেশন** সম্পূর্ণ আউটপুট তৈরি করছে।  
-Math form: corr[n] = Σ_{k} x[k]*h[k+n] (no reverse)
-
-5. প্রশ্ন: mode='full' মানে কী?
-উত্তর: আউটপুট দৈর্ঘ্য L = N + M - 1, সব সম্ভাব্য ইনডেক্স n-এর জন্য গণনা করা হয়।
-
-6. প্রশ্ন: conv এবং corr এর আউটপুট কী?
-উত্তর:
-- Convolution: [0.0, 0.5, 2.0, 3.5, 3.0]
-- Correlation: [3.0, 2.5, 2.0, 1.5, 0.0]
-
-7. প্রশ্ন: SciPy convolve/correlate vs manual implementation পার্থক্য কী?
-উত্তর:  
-- SciPy ফাংশন optimized ও concise।  
-- manual implementation এ loops দিয়ে step-by-step করা হয়।  
-- ফলাফল একই mathematical definition অনুসারে হয়।
-
-8. প্রশ্ন: Convolution vs Correlation পার্থক্য:
-উত্তর:
-- Convolution: h[n] **time-reverse** করা হয়।  
-- Correlation: h[n] reverse করা হয় না, শুধু shift করে multiply ও sum করা হয়।
+NumPy: অ্যারে ও গণিতের জন্য  
+SciPy-এর সিগন্যাল টুল থেকে correlate ও convolve ফাংশন আনছি  
+সিগন্যাল x (টাইম-ডোমেইন সিগন্যাল) তৈরি  
+ফিল্টার/ইনপুট h তৈরি (ইমপাল্স রেসপন্স)  
+x * h এর লিনিয়ার কনভোলিউশন (পূর্ণ আউটপুট)  
+x এবং h-এর ক্রস-কোরিলেশন (পূর্ণ আউটপুট)  
+আউটপুট প্রিন্ট: প্রতিটি উপাদানকে float-এ কনভার্ট করে দেখানো

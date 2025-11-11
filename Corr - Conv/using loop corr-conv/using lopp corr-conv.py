@@ -1,27 +1,24 @@
-import numpy as np                     # NumPy লাইব্রেরি ইমপোর্ট (অ্যারে ও গণিতের জন্য)
+import numpy as np
 
-x = np.array([1, 2, 3])                # ইনপুট সিগন্যাল x তৈরি
-h = np.array([0, 0.5, 1])              # ইনপাল্স রেসপন্স / ফিল্টার h তৈরি
+x = np.array([1, 2, 3])
+h = np.array([0, 0.5, 1])
 
-N = len(x)                             # x-এর দৈর্ঘ্য (এখানে 3)
-M = len(h)                             # h-এর দৈর্ঘ্য (এখানে 3)
-L = N + M - 1                          # লিনিয়ার কনভোলিউশনের আউটপুট লেন্থ (3+3-1 = 5)
-pad = M - 1                            # x প্যাড করার জন্য সাইডে লাগবে প্যাড (2)
+N = len(x)
+M = len(h)
+L = N + M - 1
+pad = M - 1
 
-x_padded = np.pad(x, (pad, pad))       # x কে দুই পাশে pad করে কেন্দ্রিক করে নেওয়া হলো
+x_padded = np.pad(x, (pad, pad))
 
-conv = np.zeros(L)                     # কনভোলিউশনের ফল রাখার ভেক্টর শূন্য দিয়ে শুরু
-corr = np.zeros(L)                     # কোরিলেশনের ফল রাখার ভেক্টর শূন্য দিয়ে শুরু
+conv = np.zeros(L)
+corr = np.zeros(L)
 
-for n in range(L):                     # প্রতিটি আউটপুট ইনডেক্স n (0..L-1) জন্য
-    for k in range(M):                 # h-এর প্রতিটি এলিমেন্ট k (0..M-1) নিয়ে যোগ করা হবে
+for n in range(L):
+    for k in range(M):
         conv[n] = conv[n] + x_padded[n + k] * h[M - 1 - k]
-        # conv: এখানে h কে উল্টিয়ে (time-reverse) ব্যবহার করা হয়েছে — তাই h[M-1-k]
-        # এবং x_padded[n+k] এর সাথে গুণ করে conv[n] এ যোগ করা হচ্ছে
 
     for k in range(M):
         corr[n] = corr[n] + x_padded[n + k] * h[k]
-        # corr: এখানে h কে না উল্টিয়ে সরাসরি ব্যবহার করা হয়েছে (এটি একটি ক্রস-সামঞ্জস্য/কোরিলেশন স্টাইল)
 
-print("Convolution:", conv.tolist())   # কনভোলিউশনের ফল প্রিন্ট (লিস্ট আকারে)
-print("Correlation:", corr.tolist())   # কোরিলেশনের ফল প্রিন্ট (লিস্ট আকারে)
+print("Convolution:", conv.tolist())
+print("Correlation:", corr.tolist())

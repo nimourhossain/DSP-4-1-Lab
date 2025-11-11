@@ -1,17 +1,16 @@
-import numpy as np                     # সংখ্যা ও অ্যারে নিয়ে কাজ করার জন্য NumPy লাইব্রেরি ইমপোর্ট করা হলো
-import matplotlib.pyplot as plt         # গ্রাফ আঁকার জন্য matplotlib.pyplot ইমপোর্ট করা হলো
+import numpy as np
+import matplotlib.pyplot as plt
 
-sr = 100                                # স্যাম্পলিং রেট 100 Hz নির্ধারণ করা হলো (প্রতি সেকেন্ডে 100টি স্যাম্পল)
-ts = 1.0 / sr                           # প্রতিটি স্যাম্পলের সময় ব্যবধান গণনা করা হলো (1/100 = 0.01 সেকেন্ড)
-t = np.arange(0, 1, ts)                 # 0 থেকে 1 সেকেন্ড পর্যন্ত সময়ের অ্যারে তৈরি করা হলো (step = 0.01 সেকেন্ড)
+sr = 100
+ts = 1.0 / sr
+t = np.arange(0, 1, ts)
 
-freq = 1                                # সাইন তরঙ্গের ফ্রিকোয়েন্সি 1 Hz নির্ধারণ করা হলো
-x = 8 * np.sin(2 * np.pi * freq * t)    # 8 অ্যাম্প্লিটিউড ও 1 Hz ফ্রিকোয়েন্সির সাইন ওয়েভ তৈরি করা হলো
+freq = 1
+x = 8 * np.sin(2 * np.pi * freq * t)
 
-plt.figure(figsize=(8, 6))              # 8x6 ইঞ্চি আকারের ফিগার বা গ্রাফ উইন্ডো তৈরি করা হলো
-plt.stem(t, x, 'r')                     # সময় (t) বনাম সিগন্যাল (x) এর স্টেম গ্রাফ আঁকা হলো, লাল রঙে
-plt.xlabel('Time (seconds)')            # X-অক্ষের লেবেল দেওয়া হলো "Time (seconds)"
-plt.ylabel('Amplitude')                 # Y-অক্ষের লেবেল দেওয়া হলো "Amplitude"
-plt.title('1 Hz Sine Wave')             # গ্রাফের শিরোনাম দেওয়া হলো
-
-plt.show()                              # তৈরি করা গ্রাফটি প্রদর্শন করা হলো
+plt.figure(figsize=(8, 6))
+plt.stem(t, x, 'r')
+plt.xlabel('Time (seconds)')
+plt.ylabel('Amplitude')
+plt.title('1 Hz Sine Wave')
+plt.show()
